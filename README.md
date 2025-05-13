@@ -9,9 +9,9 @@ The following task was set:
 3. Invert the brightness component in the original image and save the derived image.
 
 ### Oversampling
-1. Stretching (interpolating) the image by M times;
-2. Compression (decimation) of the image by N times;
-3. Oversampling the image by K=M/N times by stretching and then compressing (in two passes);
+1. Stretching (interpolating) the image by M times.
+2. Compression (decimation) of the image by N times.
+3. Oversampling the image by K=M/N times by stretching and then compressing (in two passes).
 4. Oversampling the image K times in one pass.
 
 ***

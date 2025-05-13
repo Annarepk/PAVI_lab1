@@ -79,36 +79,37 @@ Functions for the second part of the given task are in the file `resampling.py`.
     >    * **filename** - Name of the file with the original image.
     >    * **m** - Scale of interpolation.
     >    * **resultFilename** - Name of the file with the resulting interpolated image.
+
 - `downNearest(filename, n, resultFilename)`
     > Decimates the image with the Nearest Neighbor method.
     >
     > _PARAMETERS:_
-    >    * **filename** - name of the file with the original image.
-    >    * **n** - scale of decimation.
-    >    * **resultFilename** - name of the file with the result decimated image.
+    >    * **filename** - Name of the file with the original image.
+    >    * **n** - Scale of decimation.
+    >    * **resultFilename** - Name of the file with the result decimated image.
 
 - `downArea(filename, n, resultFilename)`
     > Decimates the image with the Area Resampling method.
     >
     > _PARAMETERS:_
-    >    * **filename** - name of the file with the original image.
-    >    * **n** - scale of decimation.
-    >    * **resultFilename** - name of the file with the result decimated image.
+    >    * **filename** - Name of the file with the original image.
+    >    * **n** - Scale of decimation.
+    >    * **resultFilename** - Name of the file with the result decimated image.
 
 - `twoPassResampling(filename, m, n, resultFilename)`
     > Resamples the image by K=M/N times by stretching and then compressing (in two passes).
     > 
     > _PARAMETERS:_
-    >    * **filename** - name of the file with the original image.
-    >    * **m** - scale of interpolation.
-    >    * **n** - scale of decimation.
-    >    * **resultFilename** - name of the file with the result resampled image.
+    >    * **filename** - Name of the file with the original image.
+    >    * **m** - Scale of interpolation.
+    >    * **n** - Scale of decimation.
+    >    * **resultFilename** - Name of the file with the result resampled image.
 
 - `singlePassResampling(filename, m, n, resultFilename)`
     > Resamples the image K times in one pass.
     > 
     > _PARAMETERS:_
-    >    * **filename** - name of the file with the original image.
-    >    * **m** - scale of interpolation.
-    >    * **n** - scale of decimation.
-    >    * **resultFilename** - name of the file with the result resampled image.
+    >    * **filename** - Name of the file with the original image.
+    >    * **m** - Scale of interpolation.
+    >    * **n** - Scale of decimation.
+    >    * **resultFilename** - Name of the file with the result resampled image.

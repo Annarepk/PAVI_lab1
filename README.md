@@ -1,115 +1,257 @@
 # OAVI_lab1
-_Color models and image resampling_
+_Цветовые модели и изменение размера изображений_
 
-The following task was set:
+Была поставлена следующая задача:
 
-### Color models
-1. Select the R, G, and B components and save them as separate images.
-2. Bring the image to the HSI color model, save the brightness component as a separate image.
-3. Invert the brightness component in the original image and save the derived image.
+### Цветовые модели
+1. Выделить компоненты R, G, B и сохранить как отдельные изображения.
+2. Привести изображение к цветовой модели HSI, сохранить яркостную компоненту как отдельное изображение.
+3. Инвертировать яркостную компоненту в исходном изображении, сохранить производное изображение.
 
-### Oversampling
-1. Stretching (interpolating) the image by M times.
-2. Compression (decimation) of the image by N times.
-3. Oversampling the image by K=M/N times by stretching and then compressing (in two passes).
-4. Oversampling the image K times in one pass.
+### Передискретизация
+1. Растяжение (интерполяция) изображения в M раз.
+2. Сжатие (децимация) изображения в N раз.
+3. Передискретизация изображения в K=M/N раз путём растяжения и последующего сжатия (в два прохода).
+4. Передискретизация изображения в K раз за один проход.
 
 ***
 
-## Functions
+## Функции
 
-Functions for the first part of the given task are in the file `color_models.py`.
+Функции для первой части данной задачи находятся в файле `color_models.py`.
 
 - `selectRGB(filename: str, redFilename: str, greenFilename: str, blueFilename: str)`
-    > Selects the R, G, B components from the image and saves them in new files.
+    > Выделяет R, G, B компоненты из изображения и сохраняет их в новые файлы.
     >
-    > _PARAMETERS:_
-    >    * **filename** - Name of the file with the original image.
-    >    * **redFilename** - Name of the file with the red component of the original image.
-    >    * **greenFilename** - Name of the file with the green component of the original image.
-    >    * **blueFilename** - Name of the file with the blue component of the original image.
+    > _ПАРАМЕТРЫ:_
+    >    * **filename** - Имя файла с исходным изображением.
+    >    * **redFilename** - Имя файла с красным компонентом исходного изображения.
+    >    * **greenFilename** - Имя файла с зеленым компонентом исходного изображения.
+    >    * **blueFilename** - Имя файла с синим компонентом исходного изображения.
 
 - `gatherRGB(redFilename: str, greenFilename: str, blueFilename: str, resultFilename: str)`
-    > Collects the original image from saved components for checking the result.
+    > Собирает исходное изображение из сохраненных компонентов для проверки результата.
     >
-    > _PARAMETERS:_
-    >    * **redFilename** - Name of the file with the red component of the original image.
-    >    * **greenFilename** - Name of the file with the green component of the original image.
-    >    * **blueFilename** - Name of the file with the blue component of the original image.
-    >    * **resultFilename** - Name of the collected file from the given components.
+    > _ПАРАМЕТРЫ:_
+    >    * **redFilename** - Имя файла с красным компонентом исходного изображения.
+    >    * **greenFilename** - Имя файла с зеленым компонентом исходного изображения.
+    >    * **blueFilename** - Имя файла с синим компонентом исходного изображения.
+    >    * **resultFilename** - Имя файла с собранным изображением из заданных компонентов.
 
 - `convertHSI(filename: str, HSIFilename: str, intensityFilename: str)`
-    > Converts the image to the HSI color model and saves the brightness component as a separate image.
+    > Преобразует изображение в цветовую модель HSI и сохраняет компонент яркости как отдельное изображение.
     >
-    > _PARAMETERS:_
-    >    * **filename** - Name of the file with the original image.
-    >    * **HSIFilename** - Name of the result file with the image in the HSI color model.
-    >    * **intensityFilename** - Name of the file with the brightness component of the original image.
+    > _ПАРАМЕТРЫ:_
+    >    * **filename** - Имя файла с исходным изображением.
+    >    * **HSIFilename** - Имя результирующего файла с изображением в цветовой модели HSI.
+    >    * **intensityFilename** - Имя файла с компонентом яркости исходного изображения.
 
 - `HSItoRGB(H: int, S: int, I: int)`
-    > Calculates the RGB color coordinates based on the HSI color coordinates.
+    > Вычисляет цветовые координаты RGB на основе цветовых координат HSI.
     >
-    > _PARAMETERS:_
-    >    * **H, S, I** - Color coordinates of the pixel in the HSI color model.
+    > _ПАРАМЕТРЫ:_
+    >    * **H, S, I** - Цветовые координаты пикселя в цветовой модели HSI.
 
 - `invertIntensity(HSIFilename: str, invIntensFilename: str, checkConvertFilename: str, invIntensHSIFilename: str)`
-    > Inverts the brightness component in the original image and saves the derived image.
+    > Инвертирует компонент яркости в исходном изображении и сохраняет полученное изображение.
     >
-    > _PARAMETERS:_
-    >    * **HSIFilename** - Name of the file with the original image in the HSI color model.
-    >    * **invIntensFilename** - Name of the result file with the image with the inverted brightness component in the RGB color model.
-    >    * **checkConvertFilename** - Name of the result file with the converted original HSI-image from the HSI to RGB color model.
-    >    * **invIntensHSIFilename** - Name of the result file with the image with the inverted brightness component in the HSI color model.
+    > _ПАРАМЕТРЫ:_
+    >    * **HSIFilename** - Имя файла с исходным изображением в цветовой модели HSI.
+    >    * **invIntensFilename** - Имя результирующего файла с изображением с инвертированным компонентом яркости в цветовой модели RGB.
+    >    * **checkConvertFilename** - Имя результирующего файла с преобразованным исходным HSI-изображением из HSI в цветовую модель RGB.
+    >    * **invIntensHSIFilename** - Имя результирующего файла с изображением с инвертированным компонентом яркости в цветовой модели HSI.
 
-Functions for the second part of the given task are in the file `resampling.py`.
+Функции для второй части данной задачи находятся в файле `resampling.py`.
 
 - `upNearest(filename: str, m: float, resultFilename: str)`
-    > Interpolates the image with the Nearest Neighbour method.
+    > Интерполирует изображение методом ближайшего соседа.
     >
-    > _PARAMETERS:_
-    >    * **filename** - Name of the file with the original image.
-    >    * **m** - Scale of interpolation.
-    >    * **resultFilename** - Name of the file with the resulting interpolated image.
+    > _ПАРАМЕТРЫ:_
+    >    * **filename** - Имя файла с исходным изображением.
+    >    * **m** - Масштаб интерполяции.
+    >    * **resultFilename** - Имя файла с результирующим интерполированным изображением.
 
 
 - `upBilinear(filename, m, resultFilename)`
-    > Interpolates the image with the Bilinear method.
+    > Интерполирует изображение билинейным методом.
     >
-    > _PARAMETERS:_
-    >    * **filename** - Name of the file with the original image.
-    >    * **m** - Scale of interpolation.
-    >    * **resultFilename** - Name of the file with the resulting interpolated image.
-
+    > _ПАРАМЕТРЫ:_
+    >    * **filename** - Имя файла с исходным изображением.
+    >    * **m** - Масштаб интерполяции.
+    >    * **resultFilename** - Имя файла с результирующим интерполированным изображением.
 - `downNearest(filename, n, resultFilename)`
-    > Decimates the image with the Nearest Neighbor method.
+    > Уменьшает разрешение изображения методом ближайшего соседа.
     >
-    > _PARAMETERS:_
-    >    * **filename** - Name of the file with the original image.
-    >    * **n** - Scale of decimation.
-    >    * **resultFilename** - Name of the file with the result decimated image.
+    > _ПАРАМЕТРЫ:_
+    >    * **filename** - имя файла с исходным изображением.
+    >    * **n** - масштаб уменьшения разрешения.
+    >    * **resultFilename** - имя файла с изображением с уменьшенным разрешением.
 
 - `downArea(filename, n, resultFilename)`
-    > Decimates the image with the Area Resampling method.
+    > Уменьшает разрешение изображения методом пересчета площади пикселей.
     >
-    > _PARAMETERS:_
-    >    * **filename** - Name of the file with the original image.
-    >    * **n** - Scale of decimation.
-    >    * **resultFilename** - Name of the file with the result decimated image.
+    > _ПАРАМЕТРЫ:_
+    >    * **filename** - Имя файла с исходным изображением.
+    >    * **n** - Масштаб уменьшения разрешения.
+    >    * **resultFilename** - Имя файла с изображением с уменьшенным разрешением.
 
 - `twoPassResampling(filename, m, n, resultFilename)`
-    > Resamples the image by K=M/N times by stretching and then compressing (in two passes).
+    > Изменяет размер изображения в K=M/N раз с помощью растяжения и последующего сжатия (в два прохода).
     > 
-    > _PARAMETERS:_
-    >    * **filename** - Name of the file with the original image.
-    >    * **m** - Scale of interpolation.
-    >    * **n** - Scale of decimation.
-    >    * **resultFilename** - Name of the file with the result resampled image.
+    > _ПАРАМЕТРЫ:_
+    >    * **filename** - Имя файла с исходным изображением.
+    >    * **m** - Масштаб интерполяции.
+    >    * **n** - Масштаб уменьшения разрешения.
+    >    * **resultFilename** - Имя файла с изображением с измененным размером.
 
 - `singlePassResampling(filename, m, n, resultFilename)`
-    > Resamples the image K times in one pass.
+    > Изменяет размер изображения в K раз за один проход.
     > 
-    > _PARAMETERS:_
-    >    * **filename** - Name of the file with the original image.
-    >    * **m** - Scale of interpolation.
-    >    * **n** - Scale of decimation.
-    >    * **resultFilename** - Name of the file with the result resampled image.
+    > _ПАРАМЕТРЫ:_
+    >    * **filename** - Имя файла с исходным изображением.
+    >    * **m** - Масштаб интерполяции.
+    >    * **n** - Масштаб уменьшения разрешения.
+    >    * **resultFilename** - Имя файла с изображением с измененным размером.
+
+---
+
+# Работа программы
+
+## Цветовые модели
+
+### Оригинальное изображение:
+
+<img src="Pictures/color_models/carps/carps.png" width="250">
+
+### R, G, B компоненты:
+
+<table>
+  <tr>
+    <td><img src="Pictures/color_models/carps/RGB/carpsRed.png" width="250"></td>
+    <td><img src="Pictures/color_models/carps/RGB/carpsGreen.png" width="250"></td>
+    <td><img src="Pictures/color_models/carps/RGB/carpsBlue.png" width="250"></td>
+  </tr>
+</table>
+
+### HSI:
+
+<table>
+  <tr>
+    <td>
+      <figure>
+        <img src="Pictures/color_models/carps/HSI/carpsHSI.png" width="250">
+        <figcaption>RGB -> HSI</figcaption>
+      </figure></td>
+    <td>
+      <figure>
+        <img src="Pictures/color_models/carps/HSI/carpsIntensity.png" width="250">
+        <figcaption>Компонента яркости</figcaption>
+      </figure></td>
+    <td>
+      <figure>
+        <img src="Pictures/color_models/carps/HSI/carpsInvIntensity.png" width="250">
+        <figcaption>RGB с инвертированной яркостью</figcaption>
+      </figure></td>
+  </tr>
+</table>
+
+
+## Передискретизация
+
+
+### Оригинальное изображение:
+
+<img src="Pictures/resampling/street/street.png" width="300">
+
+### Сжатие:
+
+<table>
+  <tr>
+    <td>
+      <figure>
+        <img src="Pictures/resampling/street/streetCrop.png" width="300">
+        <figcaption>Оригинал</figcaption>
+      </figure></td>
+    <td>
+      <figure>
+        <img src="Pictures/resampling/street/downsampling/x0.5/streetNearestCrop.png" width="300">
+        <figcaption>x0.5</figcaption>
+      </figure></td>
+    <td>
+      <figure>
+        <img src="Pictures/resampling/street/downsampling/x0.3/streetNearestCrop.png" width="300">
+        <figcaption>x0.3</figcaption>
+      </figure></td>
+  </tr>
+</table>
+
+### Растяжение:
+
+<table>
+  <tr>
+    <td>
+      <figure>
+        <img src="Pictures/resampling/street/streetCropUP.png" width="300">
+        <figcaption>Оригинал</figcaption>
+      </figure></td>
+    <td>
+      <figure>
+        <img src="Pictures/resampling/street/upsampling/x1.3/streetNearestCrop.png" width="300">
+        <figcaption>x1.3</figcaption>
+      </figure></td>
+    <td>
+      <figure>
+        <img src="Pictures/resampling/street/upsampling/x2/streetNearestCrop.png" width="300">
+        <figcaption>x2</figcaption>
+      </figure></td>
+  </tr>
+</table>
+
+### Передискретизация в один проход:
+
+<table>
+  <tr>
+    <td>
+      <figure>
+        <img src="Pictures/resampling/street/resampling/streetSinglePass0.3Crop.png" width="300">
+        <figcaption>x0.3</figcaption>
+      </figure></td>
+    <td>
+      <figure>
+        <img src="Pictures/resampling/street/streetCropUP.png" width="300">
+        <figcaption>Оригинал</figcaption>
+      </figure></td>
+    <td>
+      <figure>
+        <img src="Pictures/resampling/street/resampling/streetSinglePass1.6Crop.png" width="300">
+        <figcaption>x1.6</figcaption>
+      </figure></td>
+  </tr>
+</table>
+
+### Передискретизация в два прохода:
+
+
+<table>
+  <tr>
+    <td>
+      <figure>
+        <img src="Pictures/resampling/street/resampling/streetTwoPass0.7Crop.png" width="300">
+        <figcaption>x0.7</figcaption>
+      </figure></td>
+    <td>
+      <figure>
+        <img src="Pictures/resampling/street/streetCropUP.png" width="300">
+        <figcaption>Оригинал</figcaption>
+      </figure></td>
+    <td>
+      <figure>
+        <img src="Pictures/resampling/street/resampling/streetTwoPass1.6Crop.png" width="300">
+        <figcaption>x1.6</figcaption>
+      </figure></td>
+  </tr>
+</table>
+
+
+
+

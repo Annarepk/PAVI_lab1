@@ -112,3 +112,146 @@ _Цветовые модели и изменение размера изобра
     >    * **m** - Масштаб интерполяции.
     >    * **n** - Масштаб уменьшения разрешения.
     >    * **resultFilename** - Имя файла с изображением с измененным размером.
+
+---
+
+# Работа программы
+
+## Цветовые модели
+
+### Оригинальное изображение:
+
+<img src="Pictures/color_models/carps/carps.png" width="250">
+
+### R, G, B компоненты:
+
+<table>
+  <tr>
+    <td><img src="Pictures/color_models/carps/RGB/carpsRed.png" width="250"></td>
+    <td><img src="Pictures/color_models/carps/RGB/carpsGreen.png" width="250"></td>
+    <td><img src="Pictures/color_models/carps/RGB/carpsBlue.png" width="250"></td>
+  </tr>
+</table>
+
+### HSI:
+
+<table>
+  <tr>
+    <td>
+      <figure>
+        <img src="Pictures/color_models/carps/HSI/carpsHSI.png" width="250">
+        <figcaption>RGB -> HSI</figcaption>
+      </figure></td>
+    <td>
+      <figure>
+        <img src="Pictures/color_models/carps/HSI/carpsIntensity.png" width="250">
+        <figcaption>Компонента яркости</figcaption>
+      </figure></td>
+    <td>
+      <figure>
+        <img src="Pictures/color_models/carps/HSI/carpsInvIntensity.png" width="250">
+        <figcaption>RGB с инвертированной яркостью</figcaption>
+      </figure></td>
+  </tr>
+</table>
+
+
+## Передискретизация
+
+
+### Оригинальное изображение:
+
+<img src="Pictures/resampling/street/street.png" width="300">
+
+### Сжатие:
+
+<table>
+  <tr>
+    <td>
+      <figure>
+        <img src="Pictures/resampling/street/streetCrop.png" width="300">
+        <figcaption>Оригинал</figcaption>
+      </figure></td>
+    <td>
+      <figure>
+        <img src="Pictures/resampling/street/downsampling/x0.5/streetNearestCrop.png" width="300">
+        <figcaption>x0.5</figcaption>
+      </figure></td>
+    <td>
+      <figure>
+        <img src="Pictures/resampling/street/downsampling/x0.3/streetNearestCrop.png" width="300">
+        <figcaption>x0.3</figcaption>
+      </figure></td>
+  </tr>
+</table>
+
+### Растяжение:
+
+<table>
+  <tr>
+    <td>
+      <figure>
+        <img src="Pictures/resampling/street/streetCropUP.png" width="300">
+        <figcaption>Оригинал</figcaption>
+      </figure></td>
+    <td>
+      <figure>
+        <img src="Pictures/resampling/street/upsampling/x1.3/streetNearestCrop.png" width="300">
+        <figcaption>x1.3</figcaption>
+      </figure></td>
+    <td>
+      <figure>
+        <img src="Pictures/resampling/street/upsampling/x2/streetNearestCrop.png" width="300">
+        <figcaption>x2</figcaption>
+      </figure></td>
+  </tr>
+</table>
+
+### Передискретизация в один проход:
+
+<table>
+  <tr>
+    <td>
+      <figure>
+        <img src="Pictures/resampling/street/resampling/streetSinglePass0.3Crop.png" width="300">
+        <figcaption>x0.3</figcaption>
+      </figure></td>
+    <td>
+      <figure>
+        <img src="Pictures/resampling/street/streetCropUP.png" width="300">
+        <figcaption>Оригинал</figcaption>
+      </figure></td>
+    <td>
+      <figure>
+        <img src="Pictures/resampling/street/resampling/streetSinglePass1.6Crop.png" width="300">
+        <figcaption>x1.6</figcaption>
+      </figure></td>
+  </tr>
+</table>
+
+### Передискретизация в два прохода:
+
+
+<table>
+  <tr>
+    <td>
+      <figure>
+        <img src="Pictures/resampling/street/resampling/streetTwoPass0.7Crop.png" width="300">
+        <figcaption>x0.7</figcaption>
+      </figure></td>
+    <td>
+      <figure>
+        <img src="Pictures/resampling/street/streetCropUP.png" width="300">
+        <figcaption>Оригинал</figcaption>
+      </figure></td>
+    <td>
+      <figure>
+        <img src="Pictures/resampling/street/resampling/streetTwoPass1.6Crop.png" width="300">
+        <figcaption>x1.6</figcaption>
+      </figure></td>
+  </tr>
+</table>
+
+
+
+
